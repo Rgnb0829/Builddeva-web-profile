@@ -124,7 +124,7 @@ export default function Footer() {
         {/* Bottom Credits */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-secondary-token font-heading font-medium gap-4">
           <p>© 2026 BUILDDEVA. ALL RIGHTS RESERVED.</p>
-          <p className="tracking-widest uppercase">DESIGN BY ARCHITECTURAL INTEGRITY STANDARDS</p>
+          <p className="tracking-widest uppercase">DESIGN BY RAKHA W.N</p>
         </div>
       </div>
     </footer>

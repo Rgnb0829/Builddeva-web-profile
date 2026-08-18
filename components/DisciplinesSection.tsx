@@ -12,28 +12,28 @@ export default function DisciplinesSection() {
       title: 'Residential',
       slug: 'residential',
       icon: Home,
-      description: 'Bespoke private residences crafted to exact architectural specifications.',
+      description: 'Bespoke private residences crafted to exact architectural specifications and structural integrity.',
     },
     {
       id: 'industrial',
       title: 'Industrial',
       slug: 'industrial',
       icon: Warehouse,
-      description: 'High-capacity warehouses and specialized industrial facilities.',
+      description: 'High-capacity logistics warehouses and specialized industrial facilities with certified safety standards.',
     },
     {
       id: 'commercial',
       title: 'Commercial',
       slug: 'commercial',
       icon: Building2,
-      description: 'Modern office buildings and retail spaces designed for performance.',
+      description: 'Modern corporate offices and flagship retail spaces designed for long-term commercial performance.',
     },
     {
       id: 'renovation',
       title: 'Renovation',
       slug: 'renovation',
       icon: Wrench,
-      description: 'Meticulous restoration and modernization of existing structures.',
+      description: 'Meticulous structural retrofitting, restoration, and modernization of existing commercial assets.',
     },
   ];
 
@@ -74,7 +74,15 @@ export default function DisciplinesSection() {
   };
 
   return (
-    <section className="bg-surface-muted py-24 border-y border-token-subtle relative overflow-hidden">
+    <section className="bg-[#66735A] py-24 relative overflow-hidden border-y border-[#546049] shadow-inner">
+      {/* Background Architectural Blueprint Grid Texture */}
+      <div className="absolute inset-0 opacity-[0.07] pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]"></div>
+      
+      {/* Ambient Watermark "DISCIPLINES" */}
+      <div className="absolute -bottom-10 right-4 select-none pointer-events-none opacity-10 font-heading font-black text-[120px] sm:text-[180px] lg:text-[240px] leading-none text-white tracking-tighter uppercase z-0">
+        EXPERTISE
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header with scroll-triggered entrance */}
@@ -87,21 +95,21 @@ export default function DisciplinesSection() {
         >
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="h-[1px] w-6 bg-brand-token inline-block"></span>
-              <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-token">
+              <span className="h-[1px] w-6 bg-[#D8B65A] inline-block"></span>
+              <span className="font-heading text-xs font-bold uppercase tracking-widest text-[#D8B65A]">
                 — DISCIPLINES
               </span>
             </div>
-            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-primary-token tracking-tight">
+            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-[#FAF9F5] tracking-tight">
               Our Expertise
             </h2>
           </div>
-          <p className="text-sm text-secondary-token font-body max-w-md leading-relaxed">
-            Specialized divisions delivering precise engineering and construction results across diverse sectors.
+          <p className="text-sm text-[#D6E4C6] font-body max-w-md leading-relaxed">
+            Specialized engineering divisions delivering uncompromising precision, ISO-certified safety, and architectural excellence across diverse sectors.
           </p>
         </motion.div>
 
-        {/* 4 Cards Grid with bright, high-contrast token styling */}
+        {/* 4 Cards Grid - Elegant Off-White Cards with Architectural Accents */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -116,26 +124,34 @@ export default function DisciplinesSection() {
                 key={item.id}
                 variants={cardVariants}
                 whileHover={{ y: -6, transition: { duration: 0.25, ease: 'easeOut' } }}
-                className="group card-token p-8 flex flex-col justify-between hover:shadow-lg hover:border-token-primary transition-all duration-300"
+                className="group bg-[#FAF9F5] rounded-2xl p-8 flex flex-col justify-between border border-[#D6E4C6]/80 shadow-md hover:shadow-2xl hover:border-[#1E2D20] transition-all duration-300"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-none bg-surface-muted border border-token-subtle flex items-center justify-center mb-6 group-hover:border-token-primary group-hover:bg-primary-token transition-all duration-300">
-                    <Icon className="w-6 h-6 text-brand-token group-hover:text-white transition-all duration-300" />
+                  {/* Icon Box */}
+                  <div className="w-13 h-13 rounded-xl bg-[#66735A] flex items-center justify-center mb-6 group-hover:bg-[#1E2D20] group-hover:scale-105 transition-all duration-300 shadow-xs">
+                    <Icon className="w-6 h-6 text-[#FAF9F5] group-hover:text-[#D8B65A] transition-colors duration-300" />
                   </div>
-                  <h3 className="font-heading font-bold text-xl text-primary-token mb-3 group-hover:text-brand-token transition-colors">
+
+                  {/* Title */}
+                  <h3 className="font-heading font-bold text-xl text-[#1B1C1A] mb-3 group-hover:text-[#66735A] transition-colors duration-300">
                     {item.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-secondary-token font-body leading-relaxed mb-6">
+
+                  {/* Description */}
+                  <p className="text-xs sm:text-sm text-[#434842] font-body leading-relaxed mb-6">
                     {item.description}
                   </p>
                 </div>
 
+                {/* Explore Service Action */}
                 <Link
                   href={`/services/${item.slug}`}
-                  className="inline-flex items-center gap-2 font-heading text-xs font-bold uppercase tracking-wider text-brand-token hover:text-primary-token transition-colors pt-4 border-t border-token-subtle"
+                  className="inline-flex items-center justify-between w-full font-heading text-xs font-bold uppercase tracking-wider text-[#56624A] hover:text-[#1E2D20] transition-colors pt-4 border-t border-[#E3E2DF] group/link"
                 >
                   <span>Explore Service</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <div className="w-7 h-7 rounded-full bg-[#EFECE6] group-hover/link:bg-[#66735A] flex items-center justify-center transition-colors">
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[#1B1C1A] group-hover/link:text-[#FAF9F5] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all" />
+                  </div>
                 </Link>
               </motion.div>
             );
