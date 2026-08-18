@@ -3,70 +3,145 @@
 @layer base {
   :root {
     /* ----------------------------------------------------
-       LIGHT MODE DESIGN TOKENS (Signature Architectural Offwhite)
-       Calibrated for WCAG AA+ contrast
+       ARCHITECTURAL INTEGRITY DESIGN SYSTEM TOKENS (LIGHT MODE)
+       Matching YAML document exact specifications
        ---------------------------------------------------- */
-    --bg-base: #F7F6F2;
-    --bg-surface: #FFFFFF;
-    --bg-surface-muted: #EFECE6;
-    --bg-surface-elevated: #FFFFFF;
-    
-    --color-primary: #1E211F;
-    --color-primary-hover: #344335;
-    --color-primary-text: #FFFFFF;
+    --surface: #faf9f5;
+    --surface-dim: #dbdad6;
+    --surface-bright: #faf9f5;
+    --surface-container-lowest: #ffffff;
+    --surface-container-low: #f5f4f0;
+    --surface-container: #efeeea;
+    --surface-container-high: #e9e8e4;
+    --surface-container-highest: #e3e2df;
 
-    --color-secondary: #66735A;
-    --color-secondary-hover: #546049;
-    --color-secondary-text: #FFFFFF;
+    --on-surface: #1b1c1a;
+    --on-surface-variant: #434842;
+    --inverse-surface: #30312e;
+    --inverse-on-surface: #f2f1ed;
 
-    --color-accent: #D8B65A;
-    --color-accent-hover: #C5A046;
-    --color-accent-text: #1E211F;
+    --outline: #747872;
+    --outline-variant: #c4c8c0;
+    --surface-tint: #536253;
 
-    --border-subtle: #E2DFD7;
-    --border-strong: #1E211F;
-    --border-primary: var(--color-primary);
-    --border-secondary: var(--color-secondary);
+    --primary: #1e2d20;
+    --on-primary: #ffffff;
+    --primary-container: #344335;
+    --on-primary-container: #9eaf9d;
+    --inverse-primary: #bacbb8;
 
-    --text-primary: #1E211F;
-    --text-secondary: #525653;
-    --text-brand: #4E5C44;
-    --text-accent: #947221;
-    --text-inverse: #FFFFFF;
+    --secondary: #56624a;
+    --on-secondary: #ffffff;
+    --secondary-container: #d6e4c6;
+    --on-secondary-container: #5a674e;
+
+    --tertiary: #755b00;
+    --on-tertiary: #ffffff;
+    --tertiary-container: #d8b65a;
+    --on-tertiary-container: #1b1c1a;
+    --tertiary-fixed: #ffdf90;
+    --tertiary-fixed-dim: #e6c365;
+
+    --error: #ba1a1a;
+    --on-error: #ffffff;
+    --error-container: #ffdad6;
+    --on-error-container: #93000a;
+
+    /* Semantic Mappings */
+    --bg-base: var(--surface);
+    --bg-surface: var(--surface-container-lowest);
+    --bg-surface-muted: var(--surface-container);
+    --bg-surface-elevated: var(--surface-container-low);
+
+    --color-primary: var(--primary);
+    --color-primary-hover: var(--primary-container);
+    --color-primary-text: var(--on-primary);
+
+    --color-secondary: var(--secondary);
+    --color-secondary-hover: #434d3a;
+    --color-secondary-text: var(--on-secondary);
+
+    --color-accent: var(--tertiary-container);
+    --color-accent-hover: #c9a84d;
+    --color-accent-text: var(--on-tertiary-container);
+
+    --border-subtle: var(--outline-variant);
+    --border-strong: var(--outline);
+    --border-primary: var(--primary);
+    --border-secondary: var(--secondary);
+
+    --text-primary: var(--on-surface);
+    --text-secondary: var(--on-surface-variant);
+    --text-brand: var(--secondary);
+    --text-accent: #876700;
+    --text-inverse: var(--inverse-on-surface);
   }
 
   html.dark {
     /* ----------------------------------------------------
-       DARK MODE DESIGN TOKENS (Architectural Obsidian & Slate)
-       Specifically calibrated for professional CAD/BIM viewing
+       ARCHITECTURAL INTEGRITY DARK MODE TOKENS
+       Calibrated for BIM / CAD Professional Night Viewing
        ---------------------------------------------------- */
-    --bg-base: #111315;
-    --bg-surface: #181B1E;
-    --bg-surface-muted: #202429;
-    --bg-surface-elevated: #262B31;
+    --surface: #131412;
+    --surface-dim: #0e0f0e;
+    --surface-bright: #1c1d1a;
+    --surface-container-lowest: #181917;
+    --surface-container-low: #1f201d;
+    --surface-container: #242622;
+    --surface-container-high: #2a2c28;
+    --surface-container-highest: #31332f;
 
-    --color-primary: #66735A;
-    --color-primary-hover: #7A8A6C;
-    --color-primary-text: #FFFFFF;
+    --on-surface: #f2f1ed;
+    --on-surface-variant: #c4c8c0;
+    --inverse-surface: #faf9f5;
+    --inverse-on-surface: #1b1c1a;
 
-    --color-secondary: #8FA27E;
-    --color-secondary-hover: #A4B793;
-    --color-secondary-text: #111315;
+    --outline: #8e928c;
+    --outline-variant: #3a3d38;
 
-    --color-accent: #E6C265;
-    --color-accent-hover: #F2D280;
-    --color-accent-text: #111315;
+    --primary: #bacbb8;
+    --on-primary: #111f13;
+    --primary-container: #344335;
+    --on-primary-container: #d6e7d4;
 
-    --border-subtle: #2C3138;
-    --border-strong: #4B5563;
-    --border-primary: var(--color-primary);
-    --border-secondary: var(--color-secondary);
+    --secondary: #bdcbae;
+    --on-secondary: #141f0c;
+    --secondary-container: #5a674e;
+    --on-secondary-container: #d9e7c9;
 
-    --text-primary: #F3F4F6;
-    --text-secondary: #9CA3AF;
-    --text-brand: #9CB08A;
-    --text-accent: #E6C265;
-    --text-inverse: #111315;
+    --tertiary: #ffdf90;
+    --on-tertiary: #241a00;
+    --tertiary-container: #e6c365;
+    --on-tertiary-container: #1b1c1a;
+
+    /* Semantic Mappings */
+    --bg-base: var(--surface);
+    --bg-surface: var(--surface-container-lowest);
+    --bg-surface-muted: var(--surface-container);
+    --bg-surface-elevated: var(--surface-container-high);
+
+    --color-primary: var(--primary-container);
+    --color-primary-hover: #425543;
+    --color-primary-text: #ffffff;
+
+    --color-secondary: var(--secondary);
+    --color-secondary-hover: #d2dfc4;
+    --color-secondary-text: var(--on-secondary);
+
+    --color-accent: var(--tertiary-container);
+    --color-accent-hover: #f3d47d;
+    --color-accent-text: var(--on-tertiary-container);
+
+    --border-subtle: var(--outline-variant);
+    --border-strong: var(--outline);
+    --border-primary: var(--primary);
+    --border-secondary: var(--secondary);
+
+    --text-primary: var(--on-surface);
+    --text-secondary: var(--on-surface-variant);
+    --text-brand: var(--primary);
+    --text-accent: var(--tertiary);
+    --text-inverse: var(--inverse-on-surface);
   }
 
   body {
@@ -80,12 +155,12 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-plus-jakarta), system-ui, -apple-system, sans-serif;
     color: var(--text-primary);
+    letter-spacing: -0.02em;
   }
 }
 
 /* ========================================================
    DESIGN TOKEN UTILITIES
-   All components must consume these tokens for 100% theme fluidity
    ======================================================== */
 
 /* Background Tokens */
@@ -105,28 +180,36 @@
 .text-accent-token { color: var(--text-accent) !important; }
 .text-inverse-token { color: var(--text-inverse) !important; }
 
-/* Border Tokens */
+/* Border Tokens & Architectural Lines */
 .border-token-subtle { border-color: var(--border-subtle) !important; }
 .border-token-strong { border-color: var(--border-strong) !important; }
 .border-token-primary { border-color: var(--border-primary) !important; }
 .border-token-secondary { border-color: var(--border-secondary) !important; }
 
+.architectural-line {
+  border-color: var(--outline-variant);
+  border-style: solid;
+}
+
 /* ========================================================
-   TOKEN-DRIVEN BUTTON PATTERNS
-   No Bootstrap defaults, strict adherence to user specifications
+   TOKEN-DRIVEN BUTTON PATTERNS ACCORDING TO SPEC
+   - Primary (CTA): Warm Yellow (#D8B65A) background, Charcoal (#1B1C1A) text. 8px radius.
+   - Secondary: Deep Green (#344335 / #1E2D20) background, Off-white text. 8px radius.
+   - Tertiary: Ghost / Outline with smooth hover.
    ======================================================== */
 
-/* Primary Button: Background var(--color-primary), text white, hover var(--color-primary-hover) */
+/* Primary CTA Button: Warm Yellow background, Charcoal text, 8px radius */
 .btn-primary {
-  background-color: var(--color-primary) !important;
-  color: var(--color-primary-text) !important;
-  border: 1px solid var(--color-primary) !important;
+  background-color: var(--tertiary-container) !important;
+  color: var(--on-tertiary-container) !important;
+  border: 1px solid var(--tertiary-container) !important;
   font-family: var(--font-plus-jakarta), sans-serif;
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem; /* 8px according to spec */
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
@@ -135,21 +218,22 @@
   cursor: pointer;
 }
 .btn-primary:hover {
-  background-color: var(--color-primary-hover) !important;
-  border-color: var(--color-primary-hover) !important;
+  background-color: #c9a84d !important;
+  border-color: #c9a84d !important;
 }
 
-/* Secondary Button: Transparent background, text-primary, border var(--color-primary) */
+/* Secondary Button: Deep Green (#344335 / #1E2D20) background, Off-white text, 8px radius */
 .btn-secondary {
-  background-color: transparent !important;
-  color: var(--text-primary) !important;
-  border: 1px solid var(--border-primary) !important;
+  background-color: var(--primary-container) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--primary-container) !important;
   font-family: var(--font-plus-jakarta), sans-serif;
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem; /* 8px according to spec */
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
@@ -158,20 +242,22 @@
   cursor: pointer;
 }
 .btn-secondary:hover {
-  background-color: var(--bg-surface-muted) !important;
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
 }
 
-/* Accent Button: Accent background, text inverse/contrast, hover accent-hover */
+/* Accent / Outline CTA */
 .btn-accent {
-  background-color: var(--color-accent) !important;
-  color: var(--color-accent-text) !important;
-  border: 1px solid var(--color-accent) !important;
+  background-color: var(--tertiary-container) !important;
+  color: var(--on-tertiary-container) !important;
+  border: 1px solid var(--tertiary-container) !important;
   font-family: var(--font-plus-jakarta), sans-serif;
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem; /* 8px radius */
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
@@ -180,66 +266,52 @@
   cursor: pointer;
 }
 .btn-accent:hover {
-  background-color: var(--color-accent-hover) !important;
-  border-color: var(--color-accent-hover) !important;
+  background-color: #c9a84d !important;
+  border-color: #c9a84d !important;
 }
 
-/* Card Token Container */
+/* Card Token Container: 16px radius (rounded-2xl) with 1px subtle stroke */
 .card-token {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
+  border-radius: 1rem; /* 16px radius */
   color: var(--text-primary);
-  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* ========================================================
    GLOBAL COMPATIBILITY TOKENS MAPPING
-   Automatically redirects legacy semantic color classes to tokens
    ======================================================== */
-.bg-offwhite { background-color: var(--bg-base); }
-.bg-surface-cream { background-color: var(--bg-surface-muted); }
-.bg-charcoal { background-color: var(--color-primary); }
-.bg-brand-olive { background-color: var(--color-secondary); }
-.bg-dark-green { background-color: var(--color-primary); }
-.bg-cta-yellow { background-color: var(--color-accent); }
+.bg-offwhite { background-color: var(--surface); }
+.bg-surface-cream { background-color: var(--surface-container); }
+.bg-charcoal { background-color: var(--primary-container); }
+.bg-brand-olive { background-color: var(--secondary); }
+.bg-dark-green { background-color: var(--primary-container); }
+.bg-cta-yellow { background-color: var(--tertiary-container); }
 
-.text-charcoal { color: var(--text-primary); }
-.text-muted-charcoal { color: var(--text-secondary); }
-.text-brand-olive { color: var(--text-brand); }
-.text-dark-green { color: var(--text-primary); }
-.text-cta-yellow { color: var(--text-accent); }
+.text-charcoal { color: var(--on-surface); }
+.text-muted-charcoal { color: var(--on-surface-variant); }
+.text-brand-olive { color: var(--secondary); }
+.text-dark-green { color: var(--primary); }
+.text-cta-yellow { color: var(--tertiary-container); }
 
-.border-subtle { border-color: var(--border-subtle); }
-.border-dark-green { border-color: var(--border-primary); }
-.border-brand-olive { border-color: var(--border-secondary); }
-.border-charcoal { border-color: var(--border-strong); }
+.border-subtle { border-color: var(--outline-variant); }
+.border-dark-green { border-color: var(--primary-container); }
+.border-brand-olive { border-color: var(--secondary); }
+.border-charcoal { border-color: var(--outline); }
 
 /* Hex-code overrides for absolute token mapping */
-.bg-\[\#F7F6F2\] { background-color: var(--bg-base) !important; }
-.bg-\[\#EFECE6\] { background-color: var(--bg-surface-muted) !important; }
-.bg-\[\#E2DFD7\] { background-color: var(--border-subtle) !important; }
-.border-\[\#E2DFD7\] { border-color: var(--border-subtle) !important; }
-.border-\[\#EFECE6\] { border-color: var(--bg-surface-muted) !important; }
-.text-\[\#1E211F\] { color: var(--text-primary) !important; }
-.text-\[\#5A5D5A\] { color: var(--text-secondary) !important; }
-.text-\[\#66735A\] { color: var(--text-brand) !important; }
+.bg-\[\#F7F6F2\], .bg-\[\#faf9f5\] { background-color: var(--surface) !important; }
+.bg-\[\#EFECE6\], .bg-\[\#efeeea\] { background-color: var(--surface-container) !important; }
+.bg-\[\#E2DFD7\], .bg-\[\#c4c8c0\] { background-color: var(--outline-variant) !important; }
+.border-\[\#E2DFD7\], .border-\[\#c4c8c0\] { border-color: var(--outline-variant) !important; }
+.text-\[\#1E211F\], .text-\[\#1b1c1a\] { color: var(--on-surface) !important; }
+.text-\[\#5A5D5A\], .text-\[\#434842\] { color: var(--on-surface-variant) !important; }
+.text-\[\#66735A\], .text-\[\#56624a\] { color: var(--secondary) !important; }
 
-/* Dark mode specific fine-tuning */
-html.dark .bg-white { background-color: var(--bg-surface) !important; }
-html.dark input, 
-html.dark textarea, 
-html.dark select {
-  background-color: var(--bg-surface-elevated) !important;
-  color: var(--text-primary) !important;
-  border-color: var(--border-subtle) !important;
-}
-
-/* Custom Font Styles */
-.font-heading {
-  font-family: var(--font-plus-jakarta), system-ui, sans-serif;
-}
-.font-body {
-  font-family: var(--font-inter), system-ui, sans-serif;
+/* Form Minimalist Styling */
+input, textarea, select {
+  border-radius: 0.5rem; /* 8px radius */
 }
 
 /* Custom Scrollbar */
@@ -247,17 +319,11 @@ html.dark select {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-base);
+  background: var(--surface);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-secondary);
+  background: var(--secondary);
   border-radius: 4px;
-}
-
-/* Smooth Focus States */
-a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
-  outline: 2px solid var(--color-secondary);
-  outline-offset: 2px;
 }
 
 /* Leaflet Map Custom Styling */
@@ -266,18 +332,19 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   height: 100%;
   z-index: 10;
   font-family: var(--font-inter), sans-serif;
-  background-color: var(--bg-surface-muted);
+  background-color: var(--surface-container);
+  border-radius: 1rem;
 }
 .leaflet-popup-content-wrapper {
-  background-color: var(--bg-surface-elevated);
-  color: var(--text-primary);
-  border-radius: 0;
+  background-color: var(--surface-container-lowest);
+  color: var(--on-surface);
+  border-radius: 0.5rem;
   padding: 4px;
-  border: 1px solid var(--border-subtle);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  border: 1px solid var(--outline-variant);
+  box-shadow: 0 4px 20px rgba(27, 28, 26, 0.08);
 }
 .leaflet-popup-tip {
-  background-color: var(--bg-surface-elevated);
+  background-color: var(--surface-container-lowest);
 }
 html.dark .leaflet-tile {
   filter: brightness(0.7) invert(1) contrast(2.5) hue-rotate(200deg) saturate(0.3) brightness(0.75);

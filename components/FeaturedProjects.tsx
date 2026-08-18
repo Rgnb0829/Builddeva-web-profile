@@ -58,7 +58,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
               }}
               className="group flex flex-col cursor-pointer"
             >
-              <Link href={`/projects/${project.slug}`} className="block relative h-[380px] w-full overflow-hidden border border-token-subtle group-hover:border-token-primary group-hover:shadow-md transition-all duration-300 mb-5">
+              <Link href={`/projects/${project.slug}`} className="block relative h-[380px] w-full overflow-hidden rounded-2xl border border-token-subtle group-hover:border-token-primary group-hover:shadow-md transition-all duration-300 mb-5">
                 <Image
                   src={project.heroImage}
                   alt={project.title}

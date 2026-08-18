@@ -63,7 +63,7 @@ export default function ROICalculator({ onOpenInquiry }: ROICalculatorProps) {
         </div>
 
         {/* Interactive Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 card-token p-6 sm:p-10 shadow-lg">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 card-token rounded-3xl p-6 sm:p-10 shadow-lg">
           
           {/* Controls - Left 7 Columns */}
           <div className="lg:col-span-7 flex flex-col gap-6">
@@ -79,7 +79,7 @@ export default function ROICalculator({ onOpenInquiry }: ROICalculatorProps) {
                     key={type}
                     type="button"
                     onClick={() => setProjectType(type)}
-                    className={`py-3 px-2 text-xs font-heading font-bold uppercase tracking-wider border transition-all text-center cursor-pointer ${
+                    className={`py-3 px-2 text-xs font-heading font-bold uppercase tracking-wider rounded-lg border transition-all text-center cursor-pointer ${
                       projectType === type
                         ? 'bg-primary-token text-white border-token-primary shadow-xs'
                         : 'bg-surface text-primary-token border-token-subtle hover:bg-surface-muted'
@@ -133,7 +133,7 @@ export default function ROICalculator({ onOpenInquiry }: ROICalculatorProps) {
                     key={item.grade}
                     type="button"
                     onClick={() => setQualityGrade(item.grade as any)}
-                    className={`p-3 text-left border transition-all cursor-pointer flex flex-col justify-between ${
+                    className={`p-3 text-left border rounded-xl transition-all cursor-pointer flex flex-col justify-between ${
                       qualityGrade === item.grade
                         ? 'bg-surface-muted border-token-primary shadow-xs'
                         : 'bg-surface border-token-subtle hover:bg-surface-muted'
@@ -163,7 +163,7 @@ export default function ROICalculator({ onOpenInquiry }: ROICalculatorProps) {
                     key={zone}
                     type="button"
                     onClick={() => setLocationZone(zone)}
-                    className={`py-2 px-3 text-xs font-heading font-bold uppercase tracking-wider border transition-all text-center cursor-pointer ${
+                    className={`py-2 px-3 text-xs font-heading font-bold uppercase tracking-wider rounded-lg border transition-all text-center cursor-pointer ${
                       locationZone === zone
                         ? 'bg-primary-token text-white border-token-primary shadow-xs'
                         : 'bg-surface text-primary-token border-token-subtle hover:bg-surface-muted'
@@ -183,7 +183,7 @@ export default function ROICalculator({ onOpenInquiry }: ROICalculatorProps) {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
-            className="lg:col-span-5 bg-primary-token text-white p-6 sm:p-8 flex flex-col justify-between border border-token-subtle shadow-md"
+            className="lg:col-span-5 bg-primary-token text-white p-6 sm:p-8 rounded-2xl flex flex-col justify-between border border-token-subtle shadow-md"
           >
             <div>
               <span className="font-heading text-[10px] font-bold uppercase tracking-widest text-accent-token block mb-2">
@@ -214,7 +214,7 @@ export default function ROICalculator({ onOpenInquiry }: ROICalculatorProps) {
               </div>
 
               {/* Quality Guarantee Note */}
-              <div className="flex items-start gap-3 bg-black/20 p-3 border border-white/15 text-xs text-white/90 font-body mb-6">
+              <div className="flex items-start gap-3 bg-black/20 p-3 rounded-xl border border-white/15 text-xs text-white/90 font-body mb-6">
                 <ShieldCheck className="w-5 h-5 text-accent-token shrink-0 mt-0.5" />
                 <p>Termasuk jaminan garansi pemeliharaan struktur BuildDeva hingga 10 tahun dan pengawasan K3 ISO 4501.</p>
               </div>
@@ -226,7 +226,7 @@ export default function ROICalculator({ onOpenInquiry }: ROICalculatorProps) {
                 type="button"
                 onClick={handleApplyRAB}
                 id="calculator-submit-rab-btn"
-                className="btn-accent w-full py-4 text-xs font-extrabold uppercase tracking-widest shadow-md"
+                className="btn-accent w-full py-4 text-xs font-extrabold uppercase tracking-widest shadow-md rounded-lg"
               >
                 <span>MINTA SURVEI LOKASI & DED RESMI</span>
                 <ArrowRight className="w-4 h-4" />

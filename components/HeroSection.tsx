@@ -12,16 +12,16 @@ interface HeroSectionProps {
 
 export default function HeroSection({ onOpenInquiry }: HeroSectionProps) {
   return (
-    <section className="relative min-h-[90vh] lg:min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden bg-base">
+    <section className="relative min-h-[90vh] lg:min-h-screen pt-32 sm:pt-36 pb-20 flex items-center justify-center overflow-hidden bg-base">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left Text Card - Framed Architectural Box */}
+          {/* Left Text Card - Framed Architectural Box with 20px-24px rounded corners */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="lg:col-span-6 card-token p-8 sm:p-12 shadow-xl relative z-20"
+            className="lg:col-span-6 card-token rounded-3xl p-8 sm:p-12 shadow-xl relative z-20"
           >
             {/* Eyebrow */}
             <div className="flex items-center gap-2 mb-6">
@@ -47,7 +47,7 @@ export default function HeroSection({ onOpenInquiry }: HeroSectionProps) {
               <button
                 onClick={() => onOpenInquiry?.('client')}
                 id="hero-start-conversation-btn"
-                className="btn-primary group shadow-xs"
+                className="btn-primary group shadow-xs rounded-lg"
               >
                 <span>START A CONVERSATION</span>
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -56,7 +56,7 @@ export default function HeroSection({ onOpenInquiry }: HeroSectionProps) {
               <Link
                 href="/projects"
                 id="hero-explore-projects-link"
-                className="btn-secondary text-center"
+                className="btn-secondary text-center rounded-lg"
               >
                 EXPLORE PROJECTS
               </Link>
@@ -68,7 +68,7 @@ export default function HeroSection({ onOpenInquiry }: HeroSectionProps) {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="lg:col-span-6 relative h-[420px] sm:h-[550px] lg:h-[620px] w-full overflow-hidden border border-token-subtle shadow-lg"
+            className="lg:col-span-6 relative h-[420px] sm:h-[550px] lg:h-[620px] w-full overflow-hidden rounded-3xl border border-token-subtle shadow-lg"
           >
             <Image
               src="https://picsum.photos/seed/builddevahero/1200/1000"
@@ -83,7 +83,7 @@ export default function HeroSection({ onOpenInquiry }: HeroSectionProps) {
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
 
             {/* Badge overlay on bottom right */}
-            <div className="absolute bottom-6 right-6 card-token px-4 py-3 shadow-md hidden sm:block">
+            <div className="absolute bottom-6 right-6 card-token rounded-xl px-4 py-3 shadow-md hidden sm:block">
               <p className="font-heading text-xs font-bold uppercase tracking-wider text-primary-token">
                 PROVEN CERTIFIED QUALITY
               </p>

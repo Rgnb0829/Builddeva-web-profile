@@ -212,7 +212,7 @@ export default function MaterialComparator({ onOpenInquiry }: MaterialComparator
 
         {/* Preset Badges */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8">
-          <span className="text-xs font-heading font-bold uppercase text-charcoal shrink-0 mr-2">Preset Cepat:</span>
+          <span className="text-xs font-heading font-bold uppercase text-primary-token shrink-0 mr-2">Preset Cepat:</span>
           {presets.map((preset, idx) => (
             <button
               key={idx}
@@ -220,10 +220,10 @@ export default function MaterialComparator({ onOpenInquiry }: MaterialComparator
                 setMaterialAId(preset.a);
                 setMaterialBId(preset.b);
               }}
-              className={`px-3.5 py-1.5 text-xs font-heading font-bold border transition-colors whitespace-nowrap cursor-pointer ${
+              className={`px-3.5 py-1.5 text-xs font-heading font-bold rounded-lg border transition-colors whitespace-nowrap cursor-pointer ${
                 materialAId === preset.a && materialBId === preset.b
-                  ? 'bg-charcoal text-white border-charcoal'
-                  : 'bg-white text-charcoal border-[#E2DFD7] hover:bg-[#F7F6F2]'
+                  ? 'bg-primary-token text-white border-token-primary'
+                  : 'bg-surface text-primary-token border-token-subtle hover:bg-surface-muted'
               }`}
             >
               {preset.label}
@@ -232,17 +232,17 @@ export default function MaterialComparator({ onOpenInquiry }: MaterialComparator
         </div>
 
         {/* Selectors Bar */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-white p-6 border border-[#E2DFD7] mb-10 shadow-xs">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-surface p-6 rounded-2xl border border-token-subtle mb-10 shadow-xs">
           
           {/* Dropdown A */}
           <div className="md:col-span-5">
-            <label className="block text-[11px] font-heading font-bold uppercase tracking-wider text-brand-olive mb-2">
+            <label className="block text-[11px] font-heading font-bold uppercase tracking-wider text-brand-token mb-2">
               Material Opsi 01 (Primary)
             </label>
             <select
               value={materialAId}
               onChange={(e) => setMaterialAId(e.target.value)}
-              className="w-full bg-[#F7F6F2] border border-[#E2DFD7] p-3 text-xs sm:text-sm font-heading font-bold text-charcoal focus:outline-hidden focus:border-brand-olive cursor-pointer"
+              className="w-full bg-surface-muted border border-token-subtle p-3 rounded-lg text-xs sm:text-sm font-heading font-bold text-primary-token focus:outline-hidden focus:border-token-primary cursor-pointer"
             >
               {constructionMaterials.map((mat) => (
                 <option key={mat.id} value={mat.id} disabled={mat.id === materialBId}>
@@ -261,7 +261,7 @@ export default function MaterialComparator({ onOpenInquiry }: MaterialComparator
                 setMaterialBId(temp);
               }}
               aria-label="Tukar Posisi Material"
-              className="w-10 h-10 rounded-full border border-[#E2DFD7] bg-[#F7F6F2] hover:bg-brand-olive hover:text-white transition-colors flex items-center justify-center cursor-pointer group shadow-xs"
+              className="w-10 h-10 rounded-full border border-token-subtle bg-surface-muted hover:bg-brand-token hover:text-white transition-colors flex items-center justify-center cursor-pointer group shadow-xs"
               title="Tukar Posisi"
             >
               <ArrowLeftRight className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
@@ -270,13 +270,13 @@ export default function MaterialComparator({ onOpenInquiry }: MaterialComparator
 
           {/* Dropdown B */}
           <div className="md:col-span-5">
-            <label className="block text-[11px] font-heading font-bold uppercase tracking-wider text-brand-olive mb-2">
+            <label className="block text-[11px] font-heading font-bold uppercase tracking-wider text-brand-token mb-2">
               Material Opsi 02 (Comparison)
             </label>
             <select
               value={materialBId}
               onChange={(e) => setMaterialBId(e.target.value)}
-              className="w-full bg-[#F7F6F2] border border-[#E2DFD7] p-3 text-xs sm:text-sm font-heading font-bold text-charcoal focus:outline-hidden focus:border-brand-olive cursor-pointer"
+              className="w-full bg-surface-muted border border-token-subtle p-3 rounded-lg text-xs sm:text-sm font-heading font-bold text-primary-token focus:outline-hidden focus:border-token-primary cursor-pointer"
             >
               {constructionMaterials.map((mat) => (
                 <option key={mat.id} value={mat.id} disabled={mat.id === materialAId}>
@@ -296,7 +296,7 @@ export default function MaterialComparator({ onOpenInquiry }: MaterialComparator
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="bg-white p-6 sm:p-8 border-t-4 border-charcoal border-x border-b border-[#E2DFD7] flex flex-col justify-between"
+            className="bg-surface p-6 sm:p-8 rounded-2xl border-t-4 border-primary-token border-x border-b border-token-subtle flex flex-col justify-between"
           >
             <div>
               <span className="text-[10px] font-heading font-bold uppercase tracking-widest text-brand-olive block mb-1">
@@ -332,28 +332,28 @@ export default function MaterialComparator({ onOpenInquiry }: MaterialComparator
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="bg-white p-6 sm:p-8 border-t-4 border-brand-olive border-x border-b border-[#E2DFD7] flex flex-col justify-between"
+            className="bg-surface p-6 sm:p-8 rounded-2xl border-t-4 border-brand-token border-x border-b border-token-subtle flex flex-col justify-between"
           >
             <div>
-              <span className="text-[10px] font-heading font-bold uppercase tracking-widest text-brand-olive block mb-1">
+              <span className="text-[10px] font-heading font-bold uppercase tracking-widest text-brand-token block mb-1">
                 {materialB.category}
               </span>
-              <h3 className="font-heading font-extrabold text-2xl text-charcoal mb-2">
+              <h3 className="font-heading font-extrabold text-2xl text-primary-token mb-2">
                 {materialB.name}
               </h3>
-              <p className="font-heading text-xs font-bold text-muted-charcoal mb-4">
+              <p className="font-heading text-xs font-bold text-secondary-token mb-4">
                 {materialB.indonesianName}
               </p>
-              <p className="text-xs text-muted-charcoal font-body leading-relaxed mb-6">
+              <p className="text-xs text-secondary-token font-body leading-relaxed mb-6">
                 {materialB.description}
               </p>
 
-              <div className="pt-4 border-t border-[#E2DFD7]">
-                <h4 className="font-heading font-bold text-xs uppercase text-charcoal mb-3">Aplikasi Optimal:</h4>
+              <div className="pt-4 border-t border-token-subtle">
+                <h4 className="font-heading font-bold text-xs uppercase text-primary-token mb-3">Aplikasi Optimal:</h4>
                 <ul className="flex flex-col gap-2">
                   {materialB.idealApplications.map((app, i) => (
-                    <li key={i} className="flex items-start gap-2 text-xs text-charcoal font-body">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-brand-olive shrink-0 mt-0.5" />
+                    <li key={i} className="flex items-start gap-2 text-xs text-primary-token font-body">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-brand-token shrink-0 mt-0.5" />
                       <span>{app}</span>
                     </li>
                   ))}
@@ -365,29 +365,30 @@ export default function MaterialComparator({ onOpenInquiry }: MaterialComparator
         </div>
 
         {/* Technical Specification Matrix Table */}
-        <div className="bg-white border border-[#E2DFD7] overflow-x-auto mb-10 shadow-xs">
-          <div className="p-5 border-b border-[#E2DFD7] bg-[#F7F6F2] flex items-center justify-between">
-            <h3 className="font-heading font-bold text-sm text-charcoal uppercase tracking-wider">
+        <div className="bg-surface rounded-2xl border border-token-subtle overflow-hidden mb-10 shadow-xs">
+          <div className="p-5 border-b border-token-subtle bg-surface-muted flex items-center justify-between">
+            <h3 className="font-heading font-bold text-sm text-primary-token uppercase tracking-wider">
               Matrix Spesifikasi Rekayasa Struktur & Fisik
             </h3>
-            <span className="text-[11px] font-heading font-bold text-brand-olive">
+            <span className="text-[11px] font-heading font-bold text-brand-token">
               STANDAR SNI / ASTM VALIDATED
             </span>
           </div>
 
-          <table className="w-full text-left border-collapse text-xs sm:text-sm">
-            <thead>
-              <tr className="border-b border-[#E2DFD7] bg-[#EFECE6]/50">
-                <th className="p-4 font-heading font-bold text-charcoal uppercase text-xs w-1/3">Parameter Rekayasa</th>
-                <th className="p-4 font-heading font-extrabold text-charcoal w-1/3 border-l border-[#E2DFD7] bg-white/60">
-                  {materialA.name}
-                </th>
-                <th className="p-4 font-heading font-extrabold text-charcoal w-1/3 border-l border-[#E2DFD7] bg-white/60">
-                  {materialB.name}
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-[#E2DFD7]">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr className="border-b border-token-subtle bg-surface-muted/50">
+                  <th className="p-4 font-heading font-bold text-primary-token uppercase text-xs w-1/3">Parameter Rekayasa</th>
+                  <th className="p-4 font-heading font-extrabold text-primary-token w-1/3 border-l border-token-subtle bg-surface/60">
+                    {materialA.name}
+                  </th>
+                  <th className="p-4 font-heading font-extrabold text-primary-token w-1/3 border-l border-token-subtle bg-surface/60">
+                    {materialB.name}
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-token-subtle">
               
               <tr>
                 <td className="p-4 font-heading font-bold text-charcoal flex items-center gap-2">
@@ -496,30 +497,31 @@ export default function MaterialComparator({ onOpenInquiry }: MaterialComparator
                   <span>Kebutuhan Pemeliharaan Purnajual</span>
                 </td>
                 <td className="p-4 font-body text-muted-charcoal border-l border-[#E2DFD7]">{materialA.maintenanceNeeds}</td>
-                <td className="p-4 font-body text-muted-charcoal border-l border-[#E2DFD7]">{materialB.maintenanceNeeds}</td>
+                <td className="p-4 font-body text-secondary-token border-l border-token-subtle">{materialB.maintenanceNeeds}</td>
               </tr>
 
             </tbody>
           </table>
+          </div>
         </div>
 
         {/* Structural Recommendation Footer Action */}
-        <div className="bg-charcoal text-white p-8 border border-charcoal flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-primary-container text-white p-8 rounded-3xl border border-token-primary flex flex-col md:flex-row items-center justify-between gap-6 shadow-md">
           <div>
-            <span className="font-heading text-xs font-bold uppercase tracking-widest text-cta-yellow block mb-2">
+            <span className="font-heading text-xs font-bold uppercase tracking-widest text-accent-token block mb-2">
               ENGINEERING CONSULTATION
             </span>
             <h3 className="font-heading font-bold text-xl sm:text-2xl text-white mb-2">
               Butuh Rekomendasi Material Definitif untuk Proyek Anda?
             </h3>
-            <p className="text-xs sm:text-sm text-offwhite/80 font-body max-w-2xl">
+            <p className="text-xs sm:text-sm text-white/80 font-body max-w-2xl">
               Tim Principal Structural Engineer BuildDeva siap melakukan kalkulasi pemodelan ETABS / SAP2000 untuk menentukan rasio efisiensi biaya material terbaik.
             </p>
           </div>
 
           <button
             onClick={() => onOpenInquiry?.('client')}
-            className="btn-accent px-7 py-4 flex items-center gap-2 shrink-0 cursor-pointer shadow-md"
+            className="btn-accent px-7 py-4 flex items-center gap-2 shrink-0 cursor-pointer shadow-md rounded-lg"
           >
             <span>KONSULTASI STRUKTUR</span>
             <ArrowUpRight className="w-4 h-4" />

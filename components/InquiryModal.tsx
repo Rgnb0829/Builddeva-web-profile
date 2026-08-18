@@ -85,12 +85,12 @@ export default function InquiryModal({ isOpen, onClose, initialType = 'client', 
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
           transition={{ duration: 0.2 }}
-          className="bg-base w-full max-w-2xl border border-token-subtle shadow-2xl relative overflow-hidden"
+          className="bg-base w-full max-w-2xl rounded-3xl border border-token-subtle shadow-2xl relative overflow-hidden"
         >
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 text-secondary-token hover:text-primary-token transition-colors rounded-none z-10 cursor-pointer"
+            className="absolute top-4 right-4 p-2 text-secondary-token hover:text-primary-token transition-colors rounded-full z-10 cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-6 h-6" />
@@ -111,11 +111,11 @@ export default function InquiryModal({ isOpen, onClose, initialType = 'client', 
             </p>
 
             {/* Type Switcher Tabs */}
-            <div className="flex items-center gap-2 mt-6 pt-4 border-t border-token-subtle">
+            <div className="flex items-center gap-2 mt-6 pt-4 border-t border-token-subtle overflow-x-auto">
               <button
                 type="button"
                 onClick={() => setActiveTypeOverride('client')}
-                className={`px-3 py-1.5 text-xs font-heading font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 text-xs font-heading font-bold uppercase tracking-wider rounded-lg border transition-all cursor-pointer whitespace-nowrap ${
                   activeType === 'client'
                     ? 'bg-primary-token text-white border-token-primary'
                     : 'bg-surface text-primary-token border-token-subtle hover:bg-surface-muted'
@@ -126,7 +126,7 @@ export default function InquiryModal({ isOpen, onClose, initialType = 'client', 
               <button
                 type="button"
                 onClick={() => setActiveTypeOverride('partner')}
-                className={`px-3 py-1.5 text-xs font-heading font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 text-xs font-heading font-bold uppercase tracking-wider rounded-lg border transition-all cursor-pointer whitespace-nowrap ${
                   activeType === 'partner'
                     ? 'bg-primary-token text-white border-token-primary'
                     : 'bg-surface text-primary-token border-token-subtle hover:bg-surface-muted'
@@ -137,7 +137,7 @@ export default function InquiryModal({ isOpen, onClose, initialType = 'client', 
               <button
                 type="button"
                 onClick={() => setActiveTypeOverride('talent')}
-                className={`px-3 py-1.5 text-xs font-heading font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 text-xs font-heading font-bold uppercase tracking-wider rounded-lg border transition-all cursor-pointer whitespace-nowrap ${
                   activeType === 'talent'
                     ? 'bg-primary-token text-white border-token-primary'
                     : 'bg-surface text-primary-token border-token-subtle hover:bg-surface-muted'
@@ -151,7 +151,7 @@ export default function InquiryModal({ isOpen, onClose, initialType = 'client', 
           {/* Modal Form Body */}
           <div className="p-6 sm:p-8 bg-base">
             {successMessage ? (
-              <div className="bg-surface-muted p-8 text-center border border-token-subtle">
+              <div className="bg-surface-muted p-8 text-center rounded-2xl border border-token-subtle">
                 <CheckCircle className="w-12 h-12 text-brand-token mx-auto mb-4" />
                 <h4 className="font-heading font-extrabold text-2xl text-primary-token mb-2">
                   Pesan Berhasil Terkirim
@@ -170,7 +170,7 @@ export default function InquiryModal({ isOpen, onClose, initialType = 'client', 
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 {errorMessage && (
-                  <div className="bg-red-500/10 border border-red-500/30 p-3 flex items-start gap-3 text-red-600 dark:text-red-400 text-xs">
+                  <div className="bg-red-500/10 border border-red-500/30 p-3 rounded-lg flex items-start gap-3 text-red-600 dark:text-red-400 text-xs">
                     <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                     <span>{errorMessage}</span>
                   </div>
