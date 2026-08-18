@@ -40,9 +40,9 @@ export default function ProcessSection() {
   ];
 
   return (
-    <section className="bg-[#F7F6F2] py-24 relative overflow-hidden border-b border-[#E2DFD7]">
-      {/* Background Watermark Text "PROCESS" matching image.png */}
-      <div className="absolute top-12 left-4 select-none pointer-events-none opacity-5 font-heading font-black text-[140px] sm:text-[220px] lg:text-[280px] leading-none text-charcoal tracking-tighter uppercase z-0">
+    <section className="bg-base py-24 relative overflow-hidden border-b border-token-subtle">
+      {/* Background Watermark Text "PROCESS" */}
+      <div className="absolute top-12 left-4 select-none pointer-events-none opacity-5 font-heading font-black text-[140px] sm:text-[220px] lg:text-[280px] leading-none text-primary-token tracking-tighter uppercase z-0">
         PROCESS
       </div>
 
@@ -50,12 +50,12 @@ export default function ProcessSection() {
         {/* Header */}
         <div className="mb-16 max-w-2xl">
           <div className="flex items-center gap-2 mb-3">
-            <span className="h-[1px] w-6 bg-brand-olive inline-block"></span>
-            <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-olive">
+            <span className="h-[1px] w-6 bg-brand-token inline-block"></span>
+            <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-token">
               — HOW WE WORK
             </span>
           </div>
-          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-charcoal tracking-tight">
+          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-primary-token tracking-tight">
             A Meticulous Journey from Vision to Reality
           </h2>
         </div>
@@ -69,16 +69,16 @@ export default function ProcessSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="bg-[#EFECE6]/60 p-8 border-t-2 border-brand-olive flex flex-col justify-between hover:bg-[#EFECE6] transition-colors"
+              className="bg-surface-muted p-8 border-t-2 border-token-secondary flex flex-col justify-between hover:bg-surface border-x border-b border-token-subtle transition-all"
             >
               <div>
-                <span className="font-heading font-extrabold text-sm text-cta-yellow block mb-4">
+                <span className="font-heading font-extrabold text-sm text-accent-token block mb-4">
                   {step.number}
                 </span>
-                <h3 className="font-heading font-bold text-xl text-charcoal mb-3">
+                <h3 className="font-heading font-bold text-xl text-primary-token mb-3">
                   {step.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-muted-charcoal font-body leading-relaxed">
+                <p className="text-xs sm:text-sm text-secondary-token font-body leading-relaxed">
                   {step.description}
                 </p>
               </div>
@@ -90,7 +90,7 @@ export default function ProcessSection() {
         <div className="mt-12 text-center sm:text-right">
           <Link
             href="/how-we-work"
-            className="inline-flex items-center gap-2 text-xs font-heading font-bold uppercase tracking-widest text-charcoal hover:text-brand-olive transition-colors group"
+            className="inline-flex items-center gap-2 text-xs font-heading font-bold uppercase tracking-widest text-primary-token hover:text-brand-token transition-colors group"
           >
             <span>Learn More About Our Risk-Reduction Process</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

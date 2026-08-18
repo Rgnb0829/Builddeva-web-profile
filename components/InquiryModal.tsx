@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { X, CheckCircle2, Loader2, ArrowUpRight, Building, Handshake, Briefcase } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { X, CheckCircle, AlertCircle, ArrowUpRight, Loader2 } from 'lucide-react';
 import { InquiryType } from '@/types';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface InquiryModalProps {
   isOpen: boolean;
@@ -12,36 +12,21 @@ interface InquiryModalProps {
   defaultValues?: Record<string, string>;
 }
 
-export default function InquiryModal({
-  isOpen,
-  onClose,
-  initialType = 'client',
-  defaultValues = {}
-}: InquiryModalProps) {
-  const [activeType, setActiveType] = useState<InquiryType>(initialType);
+export default function InquiryModal({ isOpen, onClose, initialType = 'client', defaultValues }: InquiryModalProps) {
+  const [activeTypeOverride, setActiveTypeOverride] = useState<InquiryType | null>(null);
+  const activeType = activeTypeOverride ?? initialType;
+  const [fullName, setFullName] = useState(defaultValues?.fullName || '');
+  const [email, setEmail] = useState(defaultValues?.email || '');
+  const [phone, setPhone] = useState(defaultValues?.phone || '');
+  const [companyName, setCompanyName] = useState(defaultValues?.companyName || '');
+  const [projectType, setProjectType] = useState(defaultValues?.projectType || '');
+  const [estimatedBudget, setEstimatedBudget] = useState(defaultValues?.estimatedBudget || '');
+  const [location, setLocation] = useState(defaultValues?.location || '');
+  const [message, setMessage] = useState(defaultValues?.message || '');
+
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  // Form Fields State
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [companyName, setCompanyName] = useState('');
-  const [projectType, setProjectType] = useState(defaultValues.projectType || '');
-  const [estimatedBudget, setEstimatedBudget] = useState(defaultValues.estimatedBudget || '');
-  const [location, setLocation] = useState('');
-  const [message, setMessage] = useState(defaultValues.message || '');
-
-  // Reset or adjust form state when opening/type changes
-  const [prevType, setPrevType] = useState(initialType);
-  if (initialType !== prevType) {
-    setPrevType(initialType);
-    setActiveType(initialType);
-    if (defaultValues.projectType) setProjectType(defaultValues.projectType);
-    if (defaultValues.estimatedBudget) setEstimatedBudget(defaultValues.estimatedBudget);
-    if (defaultValues.message) setMessage(defaultValues.message);
-  }
 
   if (!isOpen) return null;
 
@@ -94,99 +79,106 @@ export default function InquiryModal({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 overflow-y-auto bg-charcoal/70 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6">
+      <div className="fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
           transition={{ duration: 0.2 }}
-          className="bg-[#F7F6F2] w-full max-w-2xl border border-[#E2DFD7] shadow-2xl relative overflow-hidden"
+          className="bg-base w-full max-w-2xl border border-token-subtle shadow-2xl relative overflow-hidden"
         >
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 text-charcoal/60 hover:text-charcoal hover:bg-black/5 transition-colors rounded-none z-10 cursor-pointer"
+            className="absolute top-4 right-4 p-2 text-secondary-token hover:text-primary-token transition-colors rounded-none z-10 cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-6 h-6" />
           </button>
 
           {/* Modal Header */}
-          <div className="p-6 sm:p-8 bg-[#EFECE6] border-b border-[#E2DFD7]">
-            <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-olive block mb-1">
+          <div className="p-6 sm:p-8 bg-surface-muted border-b border-token-subtle">
+            <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-token block mb-1">
               BUILDDEVA OFFICIAL INQUIRY PORTAL
             </span>
-            <h3 className="font-heading font-extrabold text-2xl text-charcoal">
+            <h3 className="font-heading font-extrabold text-2xl text-primary-token">
               {activeType === 'client' && 'Konsultasi Proyek & Penawaran DED'}
-              {activeType === 'partner' && 'Pengajuan Kemitraan Vendor / Konsultasi'}
-              {activeType === 'talent' && 'Aplikasi Karir & Rekrutmen Talent'}
+              {activeType === 'partner' && 'Pengajuan Kemitraan & Vendor'}
+              {activeType === 'talent' && 'Aplikasi Karir & Portofolio'}
             </h3>
+            <p className="text-xs sm:text-sm text-secondary-token font-body mt-1">
+              Tim engineering dan kemitraan BuildDeva akan memproses pesan Anda dalam 1x24 jam kerja.
+            </p>
 
-            {/* Type Selector Tabs */}
-            <div className="grid grid-cols-3 gap-2 mt-6">
-              {[
-                { id: 'client', label: 'Client / Proyek', icon: Building },
-                { id: 'partner', label: 'Partner / Vendor', icon: Handshake },
-                { id: 'talent', label: 'Talent / Karir', icon: Briefcase },
-              ].map((tab) => {
-                const Icon = tab.icon;
-                const isActive = activeType === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => {
-                      setActiveType(tab.id as InquiryType);
-                      setSuccessMessage(null);
-                      setErrorMessage(null);
-                    }}
-                    className={`py-2.5 px-3 text-xs font-heading font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${
-                      isActive
-                        ? 'bg-charcoal text-white border-charcoal'
-                        : 'bg-white text-charcoal border-[#E2DFD7] hover:bg-[#F7F6F2]'
-                    }`}
-                  >
-                    <Icon className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">{tab.label}</span>
-                    <span className="sm:hidden">{tab.id}</span>
-                  </button>
-                );
-              })}
+            {/* Type Switcher Tabs */}
+            <div className="flex items-center gap-2 mt-6 pt-4 border-t border-token-subtle">
+              <button
+                type="button"
+                onClick={() => setActiveTypeOverride('client')}
+                className={`px-3 py-1.5 text-xs font-heading font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                  activeType === 'client'
+                    ? 'bg-primary-token text-white border-token-primary'
+                    : 'bg-surface text-primary-token border-token-subtle hover:bg-surface-muted'
+                }`}
+              >
+                Client Consultation
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTypeOverride('partner')}
+                className={`px-3 py-1.5 text-xs font-heading font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                  activeType === 'partner'
+                    ? 'bg-primary-token text-white border-token-primary'
+                    : 'bg-surface text-primary-token border-token-subtle hover:bg-surface-muted'
+                }`}
+              >
+                Partnership / Vendor
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTypeOverride('talent')}
+                className={`px-3 py-1.5 text-xs font-heading font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                  activeType === 'talent'
+                    ? 'bg-primary-token text-white border-token-primary'
+                    : 'bg-surface text-primary-token border-token-subtle hover:bg-surface-muted'
+                }`}
+              >
+                Career Application
+              </button>
             </div>
           </div>
 
-          {/* Modal Content */}
-          <div className="p-6 sm:p-8 max-h-[70vh] overflow-y-auto">
+          {/* Modal Form Body */}
+          <div className="p-6 sm:p-8 bg-base">
             {successMessage ? (
-              <div className="py-8 text-center flex flex-col items-center justify-center gap-4">
-                <div className="w-16 h-16 rounded-full bg-brand-olive/10 border border-brand-olive flex items-center justify-center text-brand-olive">
-                  <CheckCircle2 className="w-8 h-8" />
-                </div>
-                <h4 className="font-heading font-bold text-2xl text-charcoal">
-                  Pesan Terkirim dengan Sukses!
+              <div className="bg-surface-muted p-8 text-center border border-token-subtle">
+                <CheckCircle className="w-12 h-12 text-brand-token mx-auto mb-4" />
+                <h4 className="font-heading font-extrabold text-2xl text-primary-token mb-2">
+                  Pesan Berhasil Terkirim
                 </h4>
-                <p className="text-sm text-muted-charcoal font-body max-w-md leading-relaxed">
+                <p className="text-sm text-secondary-token font-body mb-6 max-w-md mx-auto">
                   {successMessage}
                 </p>
                 <button
                   type="button"
                   onClick={onClose}
-                  className="mt-4 bg-charcoal text-white hover:bg-brand-olive font-heading text-xs font-bold uppercase tracking-widest px-8 py-3 transition-colors cursor-pointer"
+                  className="btn-primary"
                 >
-                  TUTUP JENDELA
+                  Tutup Jendela
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 {errorMessage && (
-                  <div className="p-3 bg-red-100 border border-red-300 text-red-800 text-xs font-body">
-                    {errorMessage}
+                  <div className="bg-red-500/10 border border-red-500/30 p-3 flex items-start gap-3 text-red-600 dark:text-red-400 text-xs">
+                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                    <span>{errorMessage}</span>
                   </div>
                 )}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-charcoal mb-1">
+                    <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-primary-token mb-1">
                       Nama Lengkap *
                     </label>
                     <input
@@ -194,29 +186,29 @@ export default function InquiryModal({
                       required
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      placeholder="e.g. Ir. Ahmad Sudirman"
-                      className="w-full bg-white border border-[#E2DFD7] p-3 text-xs text-charcoal focus:outline-hidden focus:border-brand-olive font-body"
+                      placeholder="e.g. Ir. Hendra Kusuma"
+                      className="w-full bg-surface border border-token-subtle p-3 text-xs text-primary-token focus:outline-hidden focus:border-token-primary font-body"
                     />
                   </div>
 
                   <div>
-                    <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-charcoal mb-1">
-                      Email Resmi *
+                    <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-primary-token mb-1">
+                      Alamat Email *
                     </label>
                     <input
                       type="email"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="e.g. ahmad@perusahaan.com"
-                      className="w-full bg-white border border-[#E2DFD7] p-3 text-xs text-charcoal focus:outline-hidden focus:border-brand-olive font-body"
+                      placeholder="e.g. hendra@perusahaan.com"
+                      className="w-full bg-surface border border-token-subtle p-3 text-xs text-primary-token focus:outline-hidden focus:border-token-primary font-body"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-charcoal mb-1">
+                    <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-primary-token mb-1">
                       Nomor Telepon / WhatsApp *
                     </label>
                     <input
@@ -224,35 +216,35 @@ export default function InquiryModal({
                       required
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder="081234567890"
-                      className="w-full bg-white border border-[#E2DFD7] p-3 text-xs text-charcoal focus:outline-hidden focus:border-brand-olive font-body"
+                      placeholder="e.g. +62 812-3456-7890"
+                      className="w-full bg-surface border border-token-subtle p-3 text-xs text-primary-token focus:outline-hidden focus:border-token-primary font-body"
                     />
                   </div>
 
                   <div>
-                    <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-charcoal mb-1">
-                      Perusahaan / Entitas
+                    <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-primary-token mb-1">
+                      Nama Perusahaan / Organisasi (Opsional)
                     </label>
                     <input
                       type="text"
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
-                      placeholder="e.g. PT Sentrosa Land"
-                      className="w-full bg-white border border-[#E2DFD7] p-3 text-xs text-charcoal focus:outline-hidden focus:border-brand-olive font-body"
+                      placeholder="e.g. PT Logistik Mega Nusantara"
+                      className="w-full bg-surface border border-token-subtle p-3 text-xs text-primary-token focus:outline-hidden focus:border-token-primary font-body"
                     />
                   </div>
                 </div>
 
                 {activeType === 'client' && (
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-surface-muted p-4 border border-token-subtle">
                     <div>
-                      <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-charcoal mb-1">
+                      <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-primary-token mb-1">
                         Jenis Proyek
                       </label>
                       <select
                         value={projectType}
                         onChange={(e) => setProjectType(e.target.value)}
-                        className="w-full bg-white border border-[#E2DFD7] p-3 text-xs text-charcoal focus:outline-hidden focus:border-brand-olive font-body"
+                        className="w-full bg-surface border border-token-subtle p-3 text-xs text-primary-token focus:outline-hidden focus:border-token-primary font-body"
                       >
                         <option value="">Pilih Jenis Proyek</option>
                         <option value="Residential">Residential</option>
@@ -263,7 +255,7 @@ export default function InquiryModal({
                     </div>
 
                     <div>
-                      <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-charcoal mb-1">
+                      <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-primary-token mb-1">
                         Estimasi Anggaran
                       </label>
                       <input
@@ -271,12 +263,12 @@ export default function InquiryModal({
                         value={estimatedBudget}
                         onChange={(e) => setEstimatedBudget(e.target.value)}
                         placeholder="e.g. Rp 2 Milyar - 5 Milyar"
-                        className="w-full bg-white border border-[#E2DFD7] p-3 text-xs text-charcoal focus:outline-hidden focus:border-brand-olive font-body"
+                        className="w-full bg-surface border border-token-subtle p-3 text-xs text-primary-token focus:outline-hidden focus:border-token-primary font-body"
                       />
                     </div>
 
                     <div>
-                      <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-charcoal mb-1">
+                      <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-primary-token mb-1">
                         Lokasi Proyek
                       </label>
                       <input
@@ -284,14 +276,14 @@ export default function InquiryModal({
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                         placeholder="e.g. BSD City, Tangerang"
-                        className="w-full bg-white border border-[#E2DFD7] p-3 text-xs text-charcoal focus:outline-hidden focus:border-brand-olive font-body"
+                        className="w-full bg-surface border border-token-subtle p-3 text-xs text-primary-token focus:outline-hidden focus:border-token-primary font-body"
                       />
                     </div>
                   </div>
                 )}
 
                 <div>
-                  <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-charcoal mb-1">
+                  <label className="block font-heading text-[11px] font-bold uppercase tracking-wider text-primary-token mb-1">
                     Detail Pesan & Kebutuhan *
                   </label>
                   <textarea
@@ -300,7 +292,7 @@ export default function InquiryModal({
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Tuliskan gambaran singkat rencana proyek, kebutuhan spesifikasi, atau pertanyaan Anda..."
-                    className="w-full bg-white border border-[#E2DFD7] p-3 text-xs text-charcoal focus:outline-hidden focus:border-brand-olive font-body"
+                    className="w-full bg-surface border border-token-subtle p-3 text-xs text-primary-token focus:outline-hidden focus:border-token-primary font-body"
                   />
                 </div>
 
@@ -309,7 +301,7 @@ export default function InquiryModal({
                     type="submit"
                     disabled={loading}
                     id="modal-submit-inquiry-btn"
-                    className="w-full bg-charcoal hover:bg-brand-olive text-white font-heading text-xs font-extrabold uppercase tracking-widest py-4 px-6 transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                    className="btn-primary w-full py-4 text-xs font-extrabold uppercase tracking-widest disabled:opacity-50"
                   >
                     {loading ? (
                       <>
@@ -323,7 +315,7 @@ export default function InquiryModal({
                       </>
                     )}
                   </button>
-                  <p className="text-[10px] text-muted-charcoal text-center mt-2 font-body">
+                  <p className="text-[10px] text-secondary-token text-center mt-2 font-body">
                     Data Anda dilindungi kebijakan privasi BuildDeva & tidak akan dibagikan ke pihak ketiga.
                   </p>
                 </div>

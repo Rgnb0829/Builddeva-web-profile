@@ -2,44 +2,237 @@
 
 @layer base {
   :root {
-    --bg-offwhite: #F7F6F2;
-    --text-charcoal: #1E211F;
-    --brand-olive: #66735A;
-    --dark-green: #344335;
-    --cta-yellow: #D8B65A;
-    --surface-cream: #EFECE6;
+    /* ----------------------------------------------------
+       LIGHT MODE DESIGN TOKENS (Signature Architectural Offwhite)
+       Calibrated for WCAG AA+ contrast
+       ---------------------------------------------------- */
+    --bg-base: #F7F6F2;
+    --bg-surface: #FFFFFF;
+    --bg-surface-muted: #EFECE6;
+    --bg-surface-elevated: #FFFFFF;
+    
+    --color-primary: #1E211F;
+    --color-primary-hover: #344335;
+    --color-primary-text: #FFFFFF;
+
+    --color-secondary: #66735A;
+    --color-secondary-hover: #546049;
+    --color-secondary-text: #FFFFFF;
+
+    --color-accent: #D8B65A;
+    --color-accent-hover: #C5A046;
+    --color-accent-text: #1E211F;
+
     --border-subtle: #E2DFD7;
+    --border-strong: #1E211F;
+    --border-primary: var(--color-primary);
+    --border-secondary: var(--color-secondary);
+
+    --text-primary: #1E211F;
+    --text-secondary: #525653;
+    --text-brand: #4E5C44;
+    --text-accent: #947221;
+    --text-inverse: #FFFFFF;
+  }
+
+  html.dark {
+    /* ----------------------------------------------------
+       DARK MODE DESIGN TOKENS (Architectural Obsidian & Slate)
+       Specifically calibrated for professional CAD/BIM viewing
+       ---------------------------------------------------- */
+    --bg-base: #111315;
+    --bg-surface: #181B1E;
+    --bg-surface-muted: #202429;
+    --bg-surface-elevated: #262B31;
+
+    --color-primary: #66735A;
+    --color-primary-hover: #7A8A6C;
+    --color-primary-text: #FFFFFF;
+
+    --color-secondary: #8FA27E;
+    --color-secondary-hover: #A4B793;
+    --color-secondary-text: #111315;
+
+    --color-accent: #E6C265;
+    --color-accent-hover: #F2D280;
+    --color-accent-text: #111315;
+
+    --border-subtle: #2C3138;
+    --border-strong: #4B5563;
+    --border-primary: var(--color-primary);
+    --border-secondary: var(--color-secondary);
+
+    --text-primary: #F3F4F6;
+    --text-secondary: #9CA3AF;
+    --text-brand: #9CB08A;
+    --text-accent: #E6C265;
+    --text-inverse: #111315;
   }
 
   body {
-    background-color: var(--bg-offwhite);
-    color: var(--text-charcoal);
+    background-color: var(--bg-base);
+    color: var(--text-primary);
     font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-plus-jakarta), system-ui, -apple-system, sans-serif;
+    color: var(--text-primary);
   }
 }
 
-/* Custom design tokens and utilities */
-.bg-offwhite { background-color: #F7F6F2; }
-.bg-surface-cream { background-color: #EFECE6; }
-.bg-dark-green { background-color: #344335; }
-.bg-brand-olive { background-color: #66735A; }
-.bg-cta-yellow { background-color: #D8B65A; }
-.bg-charcoal { background-color: #1E211F; }
+/* ========================================================
+   DESIGN TOKEN UTILITIES
+   All components must consume these tokens for 100% theme fluidity
+   ======================================================== */
 
-.text-charcoal { color: #1E211F; }
-.text-brand-olive { color: #66735A; }
-.text-dark-green { color: #344335; }
-.text-cta-yellow { color: #D8B65A; }
-.text-muted-charcoal { color: #5A5D5A; }
+/* Background Tokens */
+.bg-base { background-color: var(--bg-base) !important; }
+.bg-surface { background-color: var(--bg-surface) !important; }
+.bg-surface-muted { background-color: var(--bg-surface-muted) !important; }
+.bg-surface-elevated { background-color: var(--bg-surface-elevated) !important; }
 
-.border-subtle { border-color: #E2DFD7; }
-.border-dark-green { border-color: #344335; }
-.border-brand-olive { border-color: #66735A; }
+.bg-primary-token { background-color: var(--color-primary) !important; color: var(--color-primary-text) !important; }
+.bg-secondary-token { background-color: var(--color-secondary) !important; color: var(--color-secondary-text) !important; }
+.bg-accent-token { background-color: var(--color-accent) !important; color: var(--color-accent-text) !important; }
+
+/* Text Tokens (WCAG AA Compliant) */
+.text-primary-token { color: var(--text-primary) !important; }
+.text-secondary-token { color: var(--text-secondary) !important; }
+.text-brand-token { color: var(--text-brand) !important; }
+.text-accent-token { color: var(--text-accent) !important; }
+.text-inverse-token { color: var(--text-inverse) !important; }
+
+/* Border Tokens */
+.border-token-subtle { border-color: var(--border-subtle) !important; }
+.border-token-strong { border-color: var(--border-strong) !important; }
+.border-token-primary { border-color: var(--border-primary) !important; }
+.border-token-secondary { border-color: var(--border-secondary) !important; }
+
+/* ========================================================
+   TOKEN-DRIVEN BUTTON PATTERNS
+   No Bootstrap defaults, strict adherence to user specifications
+   ======================================================== */
+
+/* Primary Button: Background var(--color-primary), text white, hover var(--color-primary-hover) */
+.btn-primary {
+  background-color: var(--color-primary) !important;
+  color: var(--color-primary-text) !important;
+  border: 1px solid var(--color-primary) !important;
+  font-family: var(--font-plus-jakarta), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-hover) !important;
+  border-color: var(--color-primary-hover) !important;
+}
+
+/* Secondary Button: Transparent background, text-primary, border var(--color-primary) */
+.btn-secondary {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-primary) !important;
+  font-family: var(--font-plus-jakarta), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  background-color: var(--bg-surface-muted) !important;
+}
+
+/* Accent Button: Accent background, text inverse/contrast, hover accent-hover */
+.btn-accent {
+  background-color: var(--color-accent) !important;
+  color: var(--color-accent-text) !important;
+  border: 1px solid var(--color-accent) !important;
+  font-family: var(--font-plus-jakarta), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.btn-accent:hover {
+  background-color: var(--color-accent-hover) !important;
+  border-color: var(--color-accent-hover) !important;
+}
+
+/* Card Token Container */
+.card-token {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+/* ========================================================
+   GLOBAL COMPATIBILITY TOKENS MAPPING
+   Automatically redirects legacy semantic color classes to tokens
+   ======================================================== */
+.bg-offwhite { background-color: var(--bg-base); }
+.bg-surface-cream { background-color: var(--bg-surface-muted); }
+.bg-charcoal { background-color: var(--color-primary); }
+.bg-brand-olive { background-color: var(--color-secondary); }
+.bg-dark-green { background-color: var(--color-primary); }
+.bg-cta-yellow { background-color: var(--color-accent); }
+
+.text-charcoal { color: var(--text-primary); }
+.text-muted-charcoal { color: var(--text-secondary); }
+.text-brand-olive { color: var(--text-brand); }
+.text-dark-green { color: var(--text-primary); }
+.text-cta-yellow { color: var(--text-accent); }
+
+.border-subtle { border-color: var(--border-subtle); }
+.border-dark-green { border-color: var(--border-primary); }
+.border-brand-olive { border-color: var(--border-secondary); }
+.border-charcoal { border-color: var(--border-strong); }
+
+/* Hex-code overrides for absolute token mapping */
+.bg-\[\#F7F6F2\] { background-color: var(--bg-base) !important; }
+.bg-\[\#EFECE6\] { background-color: var(--bg-surface-muted) !important; }
+.bg-\[\#E2DFD7\] { background-color: var(--border-subtle) !important; }
+.border-\[\#E2DFD7\] { border-color: var(--border-subtle) !important; }
+.border-\[\#EFECE6\] { border-color: var(--bg-surface-muted) !important; }
+.text-\[\#1E211F\] { color: var(--text-primary) !important; }
+.text-\[\#5A5D5A\] { color: var(--text-secondary) !important; }
+.text-\[\#66735A\] { color: var(--text-brand) !important; }
+
+/* Dark mode specific fine-tuning */
+html.dark .bg-white { background-color: var(--bg-surface) !important; }
+html.dark input, 
+html.dark textarea, 
+html.dark select {
+  background-color: var(--bg-surface-elevated) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-subtle) !important;
+}
 
 /* Custom Font Styles */
 .font-heading {
@@ -54,16 +247,38 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F7F6F2;
+  background: var(--bg-base);
 }
 ::-webkit-scrollbar-thumb {
-  background: #66735A;
+  background: var(--color-secondary);
   border-radius: 4px;
 }
 
 /* Smooth Focus States */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
-  outline: 2px solid #66735A;
+  outline: 2px solid var(--color-secondary);
   outline-offset: 2px;
 }
 
+/* Leaflet Map Custom Styling */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  font-family: var(--font-inter), sans-serif;
+  background-color: var(--bg-surface-muted);
+}
+.leaflet-popup-content-wrapper {
+  background-color: var(--bg-surface-elevated);
+  color: var(--text-primary);
+  border-radius: 0;
+  padding: 4px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.leaflet-popup-tip {
+  background-color: var(--bg-surface-elevated);
+}
+html.dark .leaflet-tile {
+  filter: brightness(0.7) invert(1) contrast(2.5) hue-rotate(200deg) saturate(0.3) brightness(0.75);
+}

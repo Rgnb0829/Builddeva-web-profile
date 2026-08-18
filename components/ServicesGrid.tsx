@@ -59,7 +59,7 @@ export default function ServicesGrid({ onOpenInquiry }: ServicesGridProps) {
         <motion.div
           key={service.id}
           variants={itemVariants}
-          className={`grid grid-cols-1 lg:grid-cols-12 gap-10 items-center p-8 sm:p-10 bg-[#EFECE6] border border-[#E2DFD7] transition-shadow duration-300 hover:shadow-lg ${
+          className={`grid grid-cols-1 lg:grid-cols-12 gap-10 items-center p-8 sm:p-10 card-token transition-shadow duration-300 hover:shadow-lg ${
             idx % 2 === 1 ? 'lg:flex-row-reverse' : ''
           }`}
         >
@@ -72,8 +72,8 @@ export default function ServicesGrid({ onOpenInquiry }: ServicesGridProps) {
               transition={{ duration: 0.4, delay: 0.1 }}
               className="flex items-center gap-2"
             >
-              <span className="h-1.5 w-1.5 bg-brand-olive rounded-full inline-block"></span>
-              <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-olive">
+              <span className="h-1.5 w-1.5 bg-brand-token rounded-full inline-block"></span>
+              <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-token">
                 DIVISION 0{idx + 1} • {service.category.toUpperCase()}
               </span>
             </motion.div>
@@ -83,7 +83,7 @@ export default function ServicesGrid({ onOpenInquiry }: ServicesGridProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="font-heading font-extrabold text-2xl sm:text-3xl text-charcoal tracking-tight"
+              className="font-heading font-extrabold text-2xl sm:text-3xl text-primary-token tracking-tight"
             >
               {service.title}
             </motion.h2>
@@ -93,7 +93,7 @@ export default function ServicesGrid({ onOpenInquiry }: ServicesGridProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.25 }}
-              className="text-xs sm:text-sm font-heading font-bold text-muted-charcoal"
+              className="text-xs sm:text-sm font-heading font-bold text-brand-token"
             >
               {service.subtitle}
             </motion.p>
@@ -103,7 +103,7 @@ export default function ServicesGrid({ onOpenInquiry }: ServicesGridProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.3 }}
-              className="text-xs sm:text-sm text-muted-charcoal font-body leading-relaxed"
+              className="text-xs sm:text-sm text-secondary-token font-body leading-relaxed"
             >
               {service.description}
             </motion.p>
@@ -117,8 +117,8 @@ export default function ServicesGrid({ onOpenInquiry }: ServicesGridProps) {
               className="grid grid-cols-1 sm:grid-cols-2 gap-2 my-2"
             >
               {service.scopeOfWork.slice(0, 4).map((item, sIdx) => (
-                <div key={sIdx} className="flex items-center gap-2 text-xs text-charcoal font-body">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-brand-olive shrink-0" />
+                <div key={sIdx} className="flex items-center gap-2 text-xs text-primary-token font-body">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-brand-token shrink-0" />
                   <span className="truncate">{item}</span>
                 </div>
               ))}
@@ -134,7 +134,7 @@ export default function ServicesGrid({ onOpenInquiry }: ServicesGridProps) {
             >
               <Link
                 href={`/services/${service.slug}`}
-                className="bg-charcoal text-white hover:bg-brand-olive font-heading text-xs font-bold uppercase tracking-widest px-6 py-3.5 border border-charcoal transition-all duration-200 flex items-center gap-2 group cursor-pointer shadow-xs"
+                className="btn-primary group shadow-xs"
               >
                 <span>DETAIL LAYANAN</span>
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -142,7 +142,7 @@ export default function ServicesGrid({ onOpenInquiry }: ServicesGridProps) {
 
               <button
                 onClick={() => onOpenInquiry?.('client')}
-                className="text-xs font-heading font-bold uppercase tracking-wider text-brand-olive hover:text-charcoal transition-colors underline cursor-pointer py-2"
+                className="text-xs font-heading font-bold uppercase tracking-wider text-brand-token hover:text-primary-token transition-colors underline cursor-pointer py-2"
               >
                 Konsultasi Proyek Ini
               </button>
@@ -152,7 +152,7 @@ export default function ServicesGrid({ onOpenInquiry }: ServicesGridProps) {
           {/* Image Column */}
           <motion.div
             variants={imageVariants}
-            className="lg:col-span-6 relative h-[320px] sm:h-[360px] w-full border border-[#E2DFD7] overflow-hidden group"
+            className="lg:col-span-6 relative h-[320px] sm:h-[360px] w-full border border-token-subtle overflow-hidden group"
           >
             <Image
               src={service.heroImage}
@@ -162,7 +162,7 @@ export default function ServicesGrid({ onOpenInquiry }: ServicesGridProps) {
               sizes="(max-width: 1024px) 100vw, 50vw"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
           </motion.div>
         </motion.div>
       ))}

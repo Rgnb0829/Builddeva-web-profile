@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Calculator, Clock, CheckCircle2, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Calculator, Clock, ShieldCheck, ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import { CostEstimatorValues } from '@/lib/validations';
 import { calculateConstructionEstimate } from '@/lib/db';
@@ -43,35 +43,35 @@ export default function ROICalculator({ onOpenInquiry }: ROICalculatorProps) {
   };
 
   return (
-    <section className="bg-[#EFECE6] py-24 border-b border-[#E2DFD7]">
+    <section className="bg-surface-muted py-24 border-b border-token-subtle">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-[#E2DFD7] mb-4">
-            <Calculator className="w-4 h-4 text-brand-olive" />
-            <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-olive">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-surface border border-token-subtle mb-4">
+            <Calculator className="w-4 h-4 text-brand-token" />
+            <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-token">
               PROJEK COST & TIMELINE CALCULATOR
             </span>
           </div>
-          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-charcoal tracking-tight mb-4">
+          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-primary-token tracking-tight mb-4">
             Hitung Estimasi Anggaran & Durasi Proyek Anda
           </h2>
-          <p className="text-sm sm:text-base text-muted-charcoal font-body leading-relaxed">
+          <p className="text-sm sm:text-base text-secondary-token font-body leading-relaxed">
             Dapatkan perkiraan biaya konstruksi (RAB Indikatif) dan linimasa pengerjaan transparan sebelum melangkah ke tahap Detail Engineering Design (DED).
           </p>
         </div>
 
         {/* Interactive Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white border border-[#E2DFD7] p-6 sm:p-10 shadow-lg">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 card-token p-6 sm:p-10 shadow-lg">
           
           {/* Controls - Left 7 Columns */}
           <div className="lg:col-span-7 flex flex-col gap-6">
             
-            {/* 1. Project Type */}
+            {/* 1. Project Type Selector */}
             <div>
-              <label className="block font-heading text-xs font-bold uppercase tracking-wider text-charcoal mb-3">
-                1. Pilih Jenis Konstruksi / Proyek
+              <label className="block font-heading text-xs font-bold uppercase tracking-wider text-primary-token mb-3">
+                1. Kategori & Tipologi Proyek
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {(['Residential', 'Warehouse & Industrial', 'Commercial', 'Renovation'] as const).map((type) => (
@@ -79,10 +79,10 @@ export default function ROICalculator({ onOpenInquiry }: ROICalculatorProps) {
                     key={type}
                     type="button"
                     onClick={() => setProjectType(type)}
-                    className={`p-3 text-xs font-heading font-bold uppercase text-center border transition-all cursor-pointer ${
+                    className={`py-3 px-2 text-xs font-heading font-bold uppercase tracking-wider border transition-all text-center cursor-pointer ${
                       projectType === type
-                        ? 'bg-charcoal text-white border-charcoal'
-                        : 'bg-[#F7F6F2] text-charcoal border-[#E2DFD7] hover:bg-[#EFECE6]'
+                        ? 'bg-primary-token text-white border-token-primary shadow-xs'
+                        : 'bg-surface text-primary-token border-token-subtle hover:bg-surface-muted'
                     }`}
                   >
                     {type}
@@ -91,57 +91,62 @@ export default function ROICalculator({ onOpenInquiry }: ROICalculatorProps) {
               </div>
             </div>
 
-            {/* 2. Building Area Size */}
+            {/* 2. Area Slider */}
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="font-heading text-xs font-bold uppercase tracking-wider text-charcoal">
-                  2. Luas Bangunan / Area (m²)
+                <label className="font-heading text-xs font-bold uppercase tracking-wider text-primary-token">
+                  2. Luas Bangunan (Gross Floor Area)
                 </label>
-                <span className="font-heading font-extrabold text-lg text-brand-olive">
+                <span className="font-heading font-extrabold text-sm text-brand-token">
                   {areaSqm.toLocaleString('id-ID')} m²
                 </span>
               </div>
               <input
                 type="range"
-                min={50}
+                min={100}
                 max={20000}
                 step={50}
                 value={areaSqm}
                 onChange={(e) => setAreaSqm(Number(e.target.value))}
-                className="w-full h-2 bg-[#E2DFD7] rounded-lg appearance-none cursor-pointer accent-brand-olive"
+                className="w-full accent-[#66735A] cursor-pointer"
               />
-              <div className="flex justify-between text-[11px] text-muted-charcoal mt-1 font-body">
-                <span>50 m²</span>
-                <span>5.000 m²</span>
-                <span>20.000 m²</span>
+              <div className="flex justify-between text-[11px] text-secondary-token font-body mt-1">
+                <span>100 m²</span>
+                <span>5,000 m²</span>
+                <span>10,000 m²</span>
+                <span>20,000 m²</span>
               </div>
             </div>
 
-            {/* 3. Material & Finishing Quality Grade */}
+            {/* 3. Material & Quality Grade */}
             <div>
-              <label className="block font-heading text-xs font-bold uppercase tracking-wider text-charcoal mb-3">
-                3. Spesifikasi Material & Finishing
+              <label className="block font-heading text-xs font-bold uppercase tracking-wider text-primary-token mb-3">
+                3. Spesifikasi Material & Grade Finishing
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {[
-                  { id: 'Standard', title: 'Standard SNI', sub: 'Kualitas Kokoh & Efisien' },
-                  { id: 'Premium', title: 'Premium Quality', sub: 'Standar Komersial High-Grade' },
-                  { id: 'Luxury Architectural', title: 'Luxury Architectural', sub: 'Batu/Material Impor & Custom' },
+                  { grade: 'Standard', label: 'Standard SNI', desc: 'Baja WF standar, beton K-250, finishing lokal terpilih.' },
+                  { grade: 'Premium', label: 'Premium Architectural', desc: 'Presisi tinggi, baja structural bersertifikat, K-350, MEP terintegrasi.' },
+                  { grade: 'Luxury Architectural', label: 'Signature Luxury', desc: 'Glulam/Mass Timber, acoustic treatment, heavy-duty industrial grade.' }
                 ].map((item) => (
                   <button
-                    key={item.id}
+                    key={item.grade}
                     type="button"
-                    onClick={() => setQualityGrade(item.id as CostEstimatorValues['qualityGrade'])}
-                    className={`p-3 text-left border transition-all cursor-pointer ${
-                      qualityGrade === item.id
-                        ? 'bg-brand-olive text-white border-brand-olive shadow-xs'
-                        : 'bg-[#F7F6F2] text-charcoal border-[#E2DFD7] hover:bg-[#EFECE6]'
+                    onClick={() => setQualityGrade(item.grade as any)}
+                    className={`p-3 text-left border transition-all cursor-pointer flex flex-col justify-between ${
+                      qualityGrade === item.grade
+                        ? 'bg-surface-muted border-token-primary shadow-xs'
+                        : 'bg-surface border-token-subtle hover:bg-surface-muted'
                     }`}
                   >
-                    <p className="font-heading text-xs font-bold">{item.title}</p>
-                    <p className={`text-[11px] ${qualityGrade === item.id ? 'text-white/80' : 'text-muted-charcoal'}`}>
-                      {item.sub}
-                    </p>
+                    <div>
+                      <span className="font-heading font-bold text-xs text-primary-token block mb-1">
+                        {item.label}
+                      </span>
+                      <p className="text-[11px] text-secondary-token font-body leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -149,26 +154,22 @@ export default function ROICalculator({ onOpenInquiry }: ROICalculatorProps) {
 
             {/* 4. Location Zone */}
             <div>
-              <label className="block font-heading text-xs font-bold uppercase tracking-wider text-charcoal mb-3">
-                4. Wilayah Proyek
+              <label className="block font-heading text-xs font-bold uppercase tracking-wider text-primary-token mb-3">
+                4. Wilayah Lokasi Konstruksi
               </label>
               <div className="grid grid-cols-3 gap-2">
-                {[
-                  { id: 'Jabodetabek', label: 'Jabodetabek' },
-                  { id: 'Java Outer', label: 'Luar Jabodetabek (Jawa)' },
-                  { id: 'Outside Java', label: 'Luar Pulau Jawa' },
-                ].map((loc) => (
+                {(['Jabodetabek', 'Java Outer', 'Outside Java'] as const).map((zone) => (
                   <button
-                    key={loc.id}
+                    key={zone}
                     type="button"
-                    onClick={() => setLocationZone(loc.id as CostEstimatorValues['locationZone'])}
-                    className={`p-2.5 text-xs font-heading font-semibold text-center border transition-all cursor-pointer ${
-                      locationZone === loc.id
-                        ? 'bg-charcoal text-white border-charcoal'
-                        : 'bg-[#F7F6F2] text-charcoal border-[#E2DFD7] hover:bg-[#EFECE6]'
+                    onClick={() => setLocationZone(zone)}
+                    className={`py-2 px-3 text-xs font-heading font-bold uppercase tracking-wider border transition-all text-center cursor-pointer ${
+                      locationZone === zone
+                        ? 'bg-primary-token text-white border-token-primary shadow-xs'
+                        : 'bg-surface text-primary-token border-token-subtle hover:bg-surface-muted'
                     }`}
                   >
-                    {loc.label}
+                    {zone}
                   </button>
                 ))}
               </div>
@@ -176,45 +177,45 @@ export default function ROICalculator({ onOpenInquiry }: ROICalculatorProps) {
 
           </div>
 
-          {/* Results Output - Right 5 Columns */}
+          {/* Results Summary - Right 5 Columns */}
           <motion.div
             key={`${projectType}-${areaSqm}-${qualityGrade}-${locationZone}`}
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
-            className="lg:col-span-5 bg-dark-green text-offwhite p-6 sm:p-8 flex flex-col justify-between border border-white/10"
+            className="lg:col-span-5 bg-primary-token text-white p-6 sm:p-8 flex flex-col justify-between border border-token-subtle shadow-md"
           >
             <div>
-              <span className="font-heading text-[10px] font-bold uppercase tracking-widest text-cta-yellow block mb-2">
+              <span className="font-heading text-[10px] font-bold uppercase tracking-widest text-accent-token block mb-2">
                 HASIL ESTIMASI INDIKATIF BUILDDEVA
               </span>
 
               {/* Estimated Price Range */}
-              <div className="mb-6 pb-6 border-b border-white/10">
-                <span className="text-xs text-offwhite/70 block mb-1">Perkiraan Biaya Konstruksi (RAB Indikatif):</span>
-                <p className="font-heading font-extrabold text-2xl sm:text-3xl text-cta-yellow tracking-tight">
+              <div className="mb-6 pb-6 border-b border-white/20">
+                <span className="text-xs text-white/80 block mb-1">Perkiraan Biaya Konstruksi (RAB Indikatif):</span>
+                <p className="font-heading font-extrabold text-2xl sm:text-3xl text-accent-token tracking-tight">
                   {formatCurrency(estimate.estimatedCostMin)}
                 </p>
-                <span className="text-xs text-offwhite/60">sampai dengan</span>
-                <p className="font-heading font-bold text-xl text-offwhite tracking-tight">
+                <span className="text-xs text-white/70">sampai dengan</span>
+                <p className="font-heading font-bold text-xl text-white tracking-tight">
                   {formatCurrency(estimate.estimatedCostMax)}
                 </p>
               </div>
 
               {/* Estimated Duration */}
-              <div className="mb-6 pb-6 border-b border-white/10 flex items-center justify-between">
+              <div className="mb-6 pb-6 border-b border-white/20 flex items-center justify-between">
                 <div>
-                  <span className="text-xs text-offwhite/70 block">Estimasi Durasi Pengerjaan:</span>
-                  <span className="font-heading font-bold text-xl text-offwhite">
+                  <span className="text-xs text-white/80 block">Estimasi Durasi Pengerjaan:</span>
+                  <span className="font-heading font-bold text-xl text-white">
                     ± {estimate.estimatedDurationMonths} Bulan Kalender
                   </span>
                 </div>
-                <Clock className="w-7 h-7 text-cta-yellow" />
+                <Clock className="w-7 h-7 text-accent-token" />
               </div>
 
               {/* Quality Guarantee Note */}
-              <div className="flex items-start gap-3 bg-white/5 p-3 border border-white/10 text-xs text-offwhite/80 font-body mb-6">
-                <ShieldCheck className="w-5 h-5 text-cta-yellow shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3 bg-black/20 p-3 border border-white/15 text-xs text-white/90 font-body mb-6">
+                <ShieldCheck className="w-5 h-5 text-accent-token shrink-0 mt-0.5" />
                 <p>Termasuk jaminan garansi pemeliharaan struktur BuildDeva hingga 10 tahun dan pengawasan K3 ISO 4501.</p>
               </div>
             </div>
@@ -225,12 +226,12 @@ export default function ROICalculator({ onOpenInquiry }: ROICalculatorProps) {
                 type="button"
                 onClick={handleApplyRAB}
                 id="calculator-submit-rab-btn"
-                className="w-full bg-cta-yellow hover:bg-[#c2a24c] text-charcoal font-heading text-xs font-extrabold uppercase tracking-widest py-4 px-6 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                className="btn-accent w-full py-4 text-xs font-extrabold uppercase tracking-widest shadow-md"
               >
                 <span>MINTA SURVEI LOKASI & DED RESMI</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <p className="text-[10px] text-offwhite/50 text-center mt-3 font-body">
+              <p className="text-[10px] text-white/60 text-center mt-3 font-body">
                 {estimate.disclaimer}
               </p>
             </div>

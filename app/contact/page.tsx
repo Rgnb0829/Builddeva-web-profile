@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ROICalculator from '@/components/ROICalculator';
 import InquiryModal from '@/components/InquiryModal';
+import ContactMap from '@/components/ContactMap';
 import { companyProfile } from '@/lib/db';
 import { MapPin, Phone, Mail, Clock, ArrowUpRight } from 'lucide-react';
 import { InquiryType } from '@/types';
@@ -123,7 +124,7 @@ export default function ContactPage() {
                 <div className="flex flex-col gap-4">
                   <button
                     onClick={() => handleOpenInquiry('client')}
-                    className="w-full bg-charcoal text-white hover:bg-brand-olive font-heading text-xs font-extrabold uppercase tracking-widest py-4 px-6 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                    className="btn-primary w-full py-4 text-xs font-extrabold uppercase tracking-widest"
                   >
                     <span>BUKA FORMULIR KONSULTASI KLIEN</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -131,7 +132,7 @@ export default function ContactPage() {
 
                   <button
                     onClick={() => handleOpenInquiry('partner')}
-                    className="w-full bg-white text-charcoal hover:bg-[#F7F6F2] font-heading text-xs font-bold uppercase tracking-widest py-3.5 px-6 border border-[#E2DFD7] transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                    className="btn-secondary w-full py-3.5 text-xs font-bold uppercase tracking-widest"
                   >
                     <span>FORMULIR PROPOSAL VENDOR / PARTNER</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -140,6 +141,13 @@ export default function ContactPage() {
               </div>
 
             </div>
+          </div>
+        </section>
+
+        {/* Geographic Mobilization & Industrial Zones Map */}
+        <section className="py-16 border-b border-[#E2DFD7]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ContactMap />
           </div>
         </section>
 

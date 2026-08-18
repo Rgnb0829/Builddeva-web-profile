@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import CTABanner from '@/components/CTABanner';
 import InquiryModal from '@/components/InquiryModal';
 import ServicesGrid from '@/components/ServicesGrid';
+import MaterialComparator from '@/components/MaterialComparator';
 import { InquiryType } from '@/types';
 
 export default function ServicesPage() {
@@ -50,6 +51,9 @@ export default function ServicesPage() {
             <ServicesGrid onOpenInquiry={handleOpenInquiry} />
           </div>
         </section>
+
+        {/* Material Comparator Section */}
+        <MaterialComparator onOpenInquiry={handleOpenInquiry} />
 
         <CTABanner onOpenInquiry={handleOpenInquiry} />
       </main>

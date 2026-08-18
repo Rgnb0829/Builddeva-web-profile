@@ -74,7 +74,7 @@ export default function DisciplinesSection() {
   };
 
   return (
-    <section className="bg-dark-green text-offwhite py-24 border-y border-[#2A372B] relative overflow-hidden">
+    <section className="bg-surface-muted py-24 border-y border-token-subtle relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header with scroll-triggered entrance */}
@@ -87,21 +87,21 @@ export default function DisciplinesSection() {
         >
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="h-[1px] w-6 bg-cta-yellow inline-block"></span>
-              <span className="font-heading text-xs font-bold uppercase tracking-widest text-cta-yellow">
+              <span className="h-[1px] w-6 bg-brand-token inline-block"></span>
+              <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-token">
                 — DISCIPLINES
               </span>
             </div>
-            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-offwhite tracking-tight">
+            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-primary-token tracking-tight">
               Our Expertise
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-offwhite/70 font-body max-w-md">
-            Specialized divisions delivering precise results across diverse sectors.
+          <p className="text-sm text-secondary-token font-body max-w-md leading-relaxed">
+            Specialized divisions delivering precise engineering and construction results across diverse sectors.
           </p>
         </motion.div>
 
-        {/* 4 Cards Grid with staggered scroll-triggered entrance matching image.png */}
+        {/* 4 Cards Grid with bright, high-contrast token styling */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -116,23 +116,23 @@ export default function DisciplinesSection() {
                 key={item.id}
                 variants={cardVariants}
                 whileHover={{ y: -6, transition: { duration: 0.25, ease: 'easeOut' } }}
-                className="group bg-[#2A372B]/60 p-8 border border-white/10 flex flex-col justify-between hover:bg-[#2A372B] hover:border-cta-yellow/50 hover:shadow-xl transition-colors duration-300"
+                className="group card-token p-8 flex flex-col justify-between hover:shadow-lg hover:border-token-primary transition-all duration-300"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-none bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:border-cta-yellow/60 group-hover:bg-white/10 transition-all duration-300">
-                    <Icon className="w-6 h-6 text-offwhite group-hover:text-cta-yellow group-hover:scale-110 transition-all duration-300" />
+                  <div className="w-12 h-12 rounded-none bg-surface-muted border border-token-subtle flex items-center justify-center mb-6 group-hover:border-token-primary group-hover:bg-primary-token transition-all duration-300">
+                    <Icon className="w-6 h-6 text-brand-token group-hover:text-white transition-all duration-300" />
                   </div>
-                  <h3 className="font-heading font-bold text-xl text-offwhite mb-3 group-hover:text-cta-yellow transition-colors">
+                  <h3 className="font-heading font-bold text-xl text-primary-token mb-3 group-hover:text-brand-token transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-offwhite/70 font-body leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-secondary-token font-body leading-relaxed mb-6">
                     {item.description}
                   </p>
                 </div>
 
                 <Link
                   href={`/services/${item.slug}`}
-                  className="inline-flex items-center gap-2 font-heading text-xs font-bold uppercase tracking-wider text-offwhite/80 group-hover:text-cta-yellow transition-colors pt-4 border-t border-white/10"
+                  className="inline-flex items-center gap-2 font-heading text-xs font-bold uppercase tracking-wider text-brand-token hover:text-primary-token transition-colors pt-4 border-t border-token-subtle"
                 >
                   <span>Explore Service</span>
                   <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
