@@ -1,5 +1,17 @@
 export type ProjectCategory = 'All' | 'Residential' | 'Warehouse & Industrial' | 'Commercial' | 'Renovation';
 
+export interface ProjectMilestone {
+  title: string;
+  stage: string;
+  targetDate: string;
+  actualDate: string;
+  status: 'completed' | 'in_progress' | 'scheduled';
+  summary: string;
+  deliverables?: string[];
+  varianceNote?: string;
+  onTrack: boolean;
+}
+
 export interface Project {
   id: string;
   slug: string;
@@ -28,6 +40,7 @@ export interface Project {
     label: string;
     value: string;
   }[];
+  milestones?: ProjectMilestone[];
 }
 
 export interface ServiceCapability {

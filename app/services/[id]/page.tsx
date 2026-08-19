@@ -40,8 +40,30 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
   // Find relevant projects
   const relevantProjects = projectsData.filter(p => service.relevantProjectIds.includes(p.id) || p.category === service.category);
 
+  // Generate JSON-LD FAQ Schema for Search Engine SEO
+  const faqSchema = service.faqs && service.faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: service.faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer
+      }
+    }))
+  } : null;
+
   return (
     <div className="min-h-screen bg-[#F7F6F2] text-charcoal flex flex-col font-body">
+      {/* Inject Structured FAQ Schema for SEO */}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+
       <Header onOpenInquiry={handleOpenInquiry} />
 
       <main className="grow pt-28 pb-16">

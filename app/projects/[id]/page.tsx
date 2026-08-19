@@ -7,6 +7,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CTABanner from '@/components/CTABanner';
 import InquiryModal from '@/components/InquiryModal';
+import ProjectTimeline from '@/components/ProjectTimeline';
 import { projectsData } from '@/lib/db';
 import { ArrowLeft, ArrowUpRight, CheckCircle2, Building, Calendar, MapPin, UserCheck, ShieldCheck } from 'lucide-react';
 import { InquiryType } from '@/types';
@@ -168,6 +169,9 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
             </div>
           </div>
         </section>
+
+        {/* Construction Milestone Vertical Timeline */}
+        <ProjectTimeline project={project} />
 
         {/* Project Gallery Grid */}
         {project.gallery && project.gallery.length > 0 && (
